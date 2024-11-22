@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        <%=title %>
+    </title>
+    <link href="/css/bootstrap.css" rel="stylesheet" />
+    <link href="/css/bootstrap-datepicker.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-lg-8 col-lg-offset-2">
+                <h2>
+                    <%=title %>
+                </h2>
+                <hr />
+                <form action="/account/modify" method="post">
+                    <div class="form-group">
+                        <label for="item">事项</label>
+                        <input name="item" type="text" class="form-control" id="item" value="<%=account.item %>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="currentTime">发生时间</label>
+                        <input name="time" type="text" class="form-control" id="currentTime"
+                            value='<%=account.timeStr %>' />
+                    </div>
+                    <div class="form-group">
+                        <label for="type">类型</label>
+                        <select name="type" class="form-control" id="type">
+                            <option value="0" <%if(account.type===0){%>selected <%}%> >支出</option>
+                            <option value="1" <%if(account.type===1){%>selected <%}%>>收入</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="account">金额</label>
+                        <input name="amount" type="text" class="form-control" id="account"
+                            value="<%=account.amount %>" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="remarks">备注</label>
+                        <textarea name="remark" class="form-control" id="remarks"><%=account.remark %></textarea>
+                    </div>
+                    <input name="uid" type="hidden" value="<%=account.uid %>" />
+                    <input name="username" type="hidden" value="<%=account.username %>" />
+                    <hr>
+                    <button type="submit" class="btn btn-primary btn-block">修改</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="/javascripts/jquery.min.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <script src="/javascripts/bootstrap-datepicker.min.js"></script>
+    <script src="/javascripts/bootstrap-datepicker.zh-CN.min.js"></script>
+    <script src="/javascripts/main.js"></script>
+    <script type="text/javascript">
+        $("#currentTime").datepicker({
+            language: 'zh-CN',       //设置语言
+            autoclose: true,        //选择后自动关闭
+            clearBtn: true,         //清除按钮
+            format: "yyyy-mm-dd",   //日期格式
+        });
+    </script>
+</body>
+
+</html>
